@@ -1,0 +1,6 @@
+#!/bin/bash
+
+name=$(parse-torrent "$1" | grep name | cut -f4 -d'"')
+subliminal download "$name" -l en
+fname=$(pwd)/$name".en.srt"
+peerflix "$1" -t "$fname" --vlc
