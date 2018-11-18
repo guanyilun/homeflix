@@ -2,5 +2,7 @@
 
 name=$(parse-torrent "$1" | grep name | cut -f4 -d'"')
 subliminal download "$name" -l en
-fname=$(pwd)/$name".en.srt"
+subname=$(echo $name | cut -f-3 -d".")
+fname=$(ls | grep $subname | grep en.srt)
+echo Loading downloaded subtitle: $fname
 peerflix "$1" -t "$fname" --vlc
